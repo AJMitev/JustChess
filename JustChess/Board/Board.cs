@@ -3,8 +3,9 @@
     using System;
     using JustChess.Figures.Contracts;
     using JustChess.Common;
+    using JustChess.Board.Contracts;
 
-    public class Board
+    public class Board : IBoard
     {
         private IFigure[,] board;
 

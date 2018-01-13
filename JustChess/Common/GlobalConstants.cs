@@ -2,6 +2,7 @@
 {
     public class GlobalConstants
     {
+        public const int StandartGameNumberOfPlayers = 2;
         public const int StandratGameTotalBoardRows = 8;
         public const int StandartGameTotalBoardCols = 8;
 

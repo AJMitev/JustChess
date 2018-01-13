@@ -1,4 +1,4 @@
-﻿namespace JustChess.Board
+﻿namespace JustChess.Common
 {
     public class GlobalErrorMessages
     {
