@@ -1,12 +1,14 @@
 ﻿namespace JustChess.Engine
 {
     using System.Collections.Generic;
+
     using Board;
     using Board.Contracts;
     using Common;
     using InputProviders.Contracts;
     using JustChess.Players.Contracts;
     using JustChess.Engine.Contracts;
+    using Players;
     using Renderers.Contracts;
 
     public class StandartTwoPlayerEngine : IChessEngine
@@ -23,29 +25,27 @@
             this._board = new Board();
         }
 
-        public IEnumerable<IPlayer> Players
-        {
-            get
-            {
-                return new List<IPlayer>(this._players);
-            }
-        }
+        public IEnumerable<IPlayer> Players => new List<IPlayer>(this._players);
 
         public void Initialize(IGameInitializationStrategy gameInitializationStrategy)
         {
-            var players = this._input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
+            var players =  new List<IPlayer>
+            {
+                new Player("Gosho", ChessColor.Black),
+                new Player("Tosho", ChessColor.White)
+            }; //this._input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
             gameInitializationStrategy.Initialize(players, this._board);
             this._renderer.RenderBoard(this._board);
         }
 
         public void Start()
         {
-            throw new System.NotImplementedException();
+           
         }
 
         public void WinningConditions()
         {
-            throw new System.NotImplementedException();
+          
         }
     }
 }

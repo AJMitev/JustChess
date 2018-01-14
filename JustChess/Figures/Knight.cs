@@ -1,16 +1,14 @@
-﻿using JustChess.Common;
-
-namespace JustChess.Figures
+﻿namespace JustChess.Figures
 {
     using JustChess.Figures.Contracts;
+    using JustChess.Common;
 
-    public class Knight : IFigure
+    public class Knight :BaseFigure, IFigure
     {
-        public Knight()
+        public Knight(ChessColor color)
+            : base(color)
         {
             
         }
-
-        public ChessColor Color { get; }
     }
 }

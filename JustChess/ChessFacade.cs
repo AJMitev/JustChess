@@ -14,7 +14,7 @@
         public static void Start()
         {
             IRenderer renderer = new ConsoleRenderer();
-            renderer.RenderMainManu();
+            //renderer.RenderMainManu();
 
             IInputProvider inputProvider = new ConsoleInputProvider();
 
@@ -22,7 +22,7 @@
 
             IGameInitializationStrategy gameInitializationStrategy = new StandartStartGameInitializationStrategy();
             chessEngine.Initialize(gameInitializationStrategy);
-            chessEngine.Start();
+            //chessEngine.Start();
 
             Console.ReadLine();
         }

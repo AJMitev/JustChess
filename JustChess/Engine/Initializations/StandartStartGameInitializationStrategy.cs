@@ -16,11 +16,11 @@
     {
         private const int BoardTotalRowsAndCols = 8;
 
-        private IList<Type> figureTypes;
+        private readonly IList<Type> _figureTypes;
 
         public StandartStartGameInitializationStrategy()
         {
-            this.figureTypes = new List<Type>
+            this._figureTypes = new List<Type>
             {
                 typeof(Rook),
                 typeof(Knight),
@@ -54,7 +54,7 @@
         {
             for (int i = 0; i < BoardTotalRowsAndCols; i++)
             {
-                var figureType = this.figureTypes[i];
+                var figureType = this._figureTypes[i];
                 var figurInstance = (IFigure)Activator.CreateInstance(figureType, player.Color);
                 player.AddFigure(figurInstance);
                 var position = new Position(chessRow, (char)(i + 'a'));
