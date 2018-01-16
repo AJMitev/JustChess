@@ -22,7 +22,7 @@
 
             IGameInitializationStrategy gameInitializationStrategy = new StandartStartGameInitializationStrategy();
             chessEngine.Initialize(gameInitializationStrategy);
-            //chessEngine.Start();
+            chessEngine.Start();
 
             Console.ReadLine();
         }

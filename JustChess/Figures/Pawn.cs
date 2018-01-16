@@ -1,7 +1,11 @@
 ﻿namespace JustChess.Figures
 {
+    using System.Collections.Generic;
+
     using JustChess.Common;
     using JustChess.Figures.Contracts;
+    using Movements;
+    using Movements.Contract;
 
     public class Pawn : BaseFigure, IFigure
     {
@@ -10,5 +14,9 @@
         {
         }
 
+        public override ICollection<IMovement> Move(IMovementStrategy movementStrategy)
+        {
+           return movementStrategy.GetMovements(this.GetType().Name);
+        }
     }
 }

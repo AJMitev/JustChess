@@ -14,8 +14,9 @@
 
         public Player(string playerName, ChessColor color)
         {
-            this.figures = new List<IFigure>();
+            //TODO: Validate name length
             this.Name = playerName;
+            this.figures = new List<IFigure>();
             this.Color = color;
         }
 

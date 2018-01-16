@@ -146,7 +146,7 @@
             }
         }
 
-        private static void PrintEmptySquare(ConsoleColor backgroundColor, int top, int left)
+        public static void PrintEmptySquare(ConsoleColor backgroundColor, int top, int left)
         {
             for (int i = 0; i < ConsoleConstants.CharactersPerRowPerBoardSquare; i++)
             {
@@ -157,5 +157,36 @@
                 }
             }
         }
+
+
+        /// <summary>
+        ///  Command should be in format : a5-c5
+        /// </summary>
+        public static Move CreateMoveFromCommand(string command)
+        {
+            var positionAsStringParts = command.Split('-');
+
+            if (positionAsStringParts.Length != 2)
+            {
+                throw new InvalidOperationException("Invalid command!");
+            }
+
+
+            var fromAsString = positionAsStringParts[0];
+            var toAsString = positionAsStringParts[1];
+
+            var fromPostiion = Position.FromChessCordinates(fromAsString[1] - '0', fromAsString[0]);
+            var toPosition = Position.FromChessCordinates(toAsString[1] - '0', toAsString[0]);
+
+            return new Move(fromPostiion, toPosition);
+        }
+
+        public static void ClearRow(int row)
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, row);
+            Console.Write(new string(' ', Console.WindowWidth));
+        }
     }
+
 }

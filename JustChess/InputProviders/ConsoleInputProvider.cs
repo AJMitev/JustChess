@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Common;
     using Common.Console;
     using Contracts;
@@ -23,11 +24,24 @@
 
                 Console.Write(string.Format(PlayerNameText, i));
                 string name = Console.ReadLine();
-                var player = new Player(name, (ChessColor) (i - 1));
+                var player = new Player(name, (ChessColor)(i - 1));
                 players.Add(player);
             }
 
             return players;
+        }
+
+
+        public Move GetNextPlayerMove(IPlayer player)
+        {
+            ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerIO);
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, ConsoleConstants.ConsoleRowForPlayerIO);
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            Console.Write($"{player.Name} is next: ");
+            var positionAsString = Console.ReadLine().Trim().ToLower();
+
+            return ConsoleHelpers.CreateMoveFromCommand(positionAsString);
         }
     }
 }

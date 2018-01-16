@@ -1,7 +1,9 @@
 ﻿namespace JustChess.Figures
 {
+    using System.Collections.Generic;
     using JustChess.Common;
     using JustChess.Figures.Contracts;
+    using Movements.Contract;
 
     public class Bishop : BaseFigure, IFigure
     {
@@ -9,6 +11,11 @@
             : base(color)
         {
             
+        }
+
+        public override ICollection<IMovement> Move(IMovementStrategy movementStrategy)
+        {
+            return movementStrategy.GetMovements(this.GetType().Name);
         }
     }
 }
