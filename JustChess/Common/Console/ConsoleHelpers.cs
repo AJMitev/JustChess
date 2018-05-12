@@ -8,7 +8,7 @@
 
     public static class ConsoleHelpers
     {
-        private static IDictionary<string, bool[,]> patterns = new Dictionary<string, bool[,]>
+        private static readonly IDictionary<string, bool[,]> patterns = new Dictionary<string, bool[,]>
         {
             {"Pawn", new bool[,]
                 {

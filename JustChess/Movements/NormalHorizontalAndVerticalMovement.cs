@@ -30,12 +30,12 @@
 
                         if (to.Col == colIndex)
                         {
-                            CheckForFigureOnTheWay(figure, board, to);
+                            MovementValidator.CheckForFigureOnTheWay(figure, board, to);
                             return;
                         }
 
                         var position = Position.FromChessCordinates(move.From.Row, colIndex);
-                        CheckForFigureOnTheWay(figure, board, position);
+                        MovementValidator.CheckForFigureOnTheWay(figure, board, position);
 
                     }
                 }
@@ -50,12 +50,12 @@
 
                         if (to.Row == rowIndex)
                         {
-                            CheckForFigureOnTheWay(figure,board, to);
+                            MovementValidator.CheckForFigureOnTheWay(figure, board, to);
                             return;
                         }
 
                         var position = Position.FromChessCordinates(rowIndex, move.From.Col);
-                        CheckForFigureOnTheWay(figure,board,position);
+                        MovementValidator.CheckForFigureOnTheWay(figure, board, position);
                     }
                 }
 
@@ -63,23 +63,13 @@
             }
             else
             {
-            throw new InvalidOperationException($"{figure.GetType().Name} cannot move that way!");
+                if (figure.GetType().Name != "Queen")
+                {
+                    throw new InvalidOperationException($"{figure.GetType().Name} cannot move that way!");
 
+                }
             }
         }
 
-        private static void CheckForFigureOnTheWay(IFigure figure, IBoard board, Position to)
-        {
-            var figureAtPositon = board.GetFigureAtPosition(to);
-
-            if (figureAtPositon != null && figureAtPositon.Color == figure.Color)
-            {
-                throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
-            }
-            else
-            {
-                return;
-            }
-        }
     }
 }

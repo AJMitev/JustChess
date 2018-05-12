@@ -39,7 +39,7 @@
             Console.BackgroundColor = ConsoleColor.Black;
 
             Console.Write($"{player.Name} is next: ");
-            var positionAsString = Console.ReadLine().Trim().ToLower();
+            var positionAsString = Console.ReadLine()?.Trim().ToLower();
 
             return ConsoleHelpers.CreateMoveFromCommand(positionAsString);
         }

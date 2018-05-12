@@ -1,9 +1,14 @@
 ﻿namespace JustChess.Common
 {
-    public struct Move
+    using System;
+
+    using Board.Contracts;
+    using Figures.Contracts;
+
+    public class Move
     {
         public Move(Position from, Position to)
-            :this()
+            //:this()
         {
             this.From = from;
             this.To = to;

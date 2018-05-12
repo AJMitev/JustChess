@@ -11,6 +11,9 @@
         public const char MinimumColValueOnBoard = 'a';
         public const char MaximumColValueOnBoard = 'h';
 
+        public const int WhitePawnsStartingRow = 2;
+        public const int BlackPawnsStartingRow = 7;
+
         public const string EmptyString = "";
     }
 }

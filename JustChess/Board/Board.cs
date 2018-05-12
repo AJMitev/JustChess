@@ -67,7 +67,6 @@
         private int GetArrayCol(char chessCol)
         {
             return chessCol - 'a';
-
         }
     }
 }

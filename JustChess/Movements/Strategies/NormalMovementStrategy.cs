@@ -18,6 +18,19 @@
             { "Rook", new List<IMovement>
             {
                 new NormalHorizontalAndVerticalMovement()
+            }},
+            { "Queen", new List<IMovement>
+            {
+                new NormalHorizontalAndVerticalMovement(),
+                new NormalDiagonalMovement()
+            }},
+            { "King", new List<IMovement>
+            {
+                new NormalKingMovement()
+            }},
+            { "Knight", new List<IMovement>
+            {
+                new NormalKnightMovement()
             }}
         };
 

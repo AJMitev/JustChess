@@ -6,6 +6,7 @@
     using JustChess.Board.Contracts;
     using JustChess.Common;
     using JustChess.Figures.Contracts;
+    using JustChess.Movements;
 
     public class NormalPawnMovement : IMovement
     {
@@ -32,21 +33,21 @@
 
             if (color == ChessColor.White)
             {
-                if (from.Row + 1 == to.Row && this.CheckDiagonalMove(from, to))
+                if (from.Row + 1 == to.Row && MovementValidator.IsItADiagonalMove(from, to))
                 {
-                    if (this.CheckOtherFigureIfValid(board, to, other))
+                    if (MovementValidator.IsItValidOponentFigure(board, to, other))
                     {
                         return;
                     }
                 }
-                if (from.Row == 2 && !this.CheckDiagonalMove(from, to))
+                if (from.Row == GlobalConstants.WhitePawnsStartingRow && !MovementValidator.IsItADiagonalMove(from, to))
                 {
                     if (from.Row + 2 == to.Row && figureAtPosition == null)
                     {
                         return;
                     }
                 }
-                if (from.Row + 1 == to.Row && !this.CheckDiagonalMove(from, to))
+                if (from.Row + 1 == to.Row && !MovementValidator.IsItADiagonalMove(from, to))
                 {
                     if (figureAtPosition == null)
                     {
@@ -56,21 +57,21 @@
             }
             else if (color == ChessColor.Black)
             {
-                if (from.Row - 1 == to.Row && this.CheckDiagonalMove(from, to))
+                if (from.Row - 1 == to.Row && MovementValidator.IsItADiagonalMove(from, to))
                 {
-                    if (this.CheckOtherFigureIfValid(board, to, other))
+                    if (MovementValidator.IsItValidOponentFigure(board, to, other))
                     {
                         return;
                     }
                 }
-                if (from.Row == 7 && !this.CheckDiagonalMove(from, to))
+                if (from.Row == GlobalConstants.BlackPawnsStartingRow && !MovementValidator.IsItADiagonalMove(from, to))
                 {
                     if (from.Row - 2 == to.Row && figureAtPosition == null)
                     {
                         return;
                     }
                 }
-                if (from.Row - 1 == to.Row && !this.CheckDiagonalMove(from, to))
+                if (from.Row - 1 == to.Row && !MovementValidator.IsItADiagonalMove(from, to))
                 {
                     if (figureAtPosition == null)
                     {
@@ -80,22 +81,6 @@
             }
 
             throw new InvalidOperationException(PawnInvalidMove);
-        }
-
-        private bool CheckOtherFigureIfValid(IBoard board, Position to, ChessColor color)
-        {
-            var otherFigure = board.GetFigureAtPosition(to);
-            if (otherFigure != null && otherFigure.Color == color)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool CheckDiagonalMove(Position from, Position to)
-        {
-            return (from.Col + 1 == to.Col || from.Col - 1 == to.Col);
         }
     }
 }

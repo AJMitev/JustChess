@@ -1,6 +1,7 @@
 ﻿namespace JustChess.Figures
 {
     using System.Collections.Generic;
+
     using JustChess.Common;
     using JustChess.Figures.Contracts;
     using Movements.Contract;

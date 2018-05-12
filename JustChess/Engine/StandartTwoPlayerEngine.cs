@@ -4,21 +4,21 @@
     using System.Linq;
     using System.Collections.Generic;
 
-    using Board;
-    using Board.Contracts;
-    using Common;
-    using Figures.Contracts;
-    using InputProviders.Contracts;
+    using JustChess.Board;
+    using JustChess.Board.Contracts;
+    using JustChess.Common;
+    using JustChess.Figures.Contracts;
+    using JustChess.InputProviders.Contracts;
     using JustChess.Players.Contracts;
     using JustChess.Engine.Contracts;
-    using Movements.Contract;
-    using Movements.Strategies;
-    using Players;
-    using Renderers.Contracts;
+    using JustChess.Movements.Contract;
+    using JustChess.Movements.Strategies;
+    using JustChess.Players;
+    using JustChess.Renderers.Contracts;
 
     public class StandartTwoPlayerEngine : IChessEngine
     {
-        private  IList<IPlayer> _players;
+        private IList<IPlayer> _players;
         private readonly IRenderer _renderer;
         private readonly IInputProvider _input;
         private readonly IBoard _board;
@@ -34,7 +34,7 @@
             this._movementStrategy = new NormalMovementStrategy();
         }
 
-     
+
 
         public IEnumerable<IPlayer> Players => new List<IPlayer>(this._players);
 
@@ -42,10 +42,10 @@
         {
 
             //TODO: BUG - if players are changed- board is reversed
-          this._players =  new List<IPlayer>
+            this._players = new List<IPlayer>
             {
-                new Player("Gosho", ChessColor.Black),
-                new Player("Tosho", ChessColor.White)
+                new Player("Black", ChessColor.Black),
+                new Player("White", ChessColor.White)
             }; //this._input.GetPlayers(GlobalConstants.StandartGameNumberOfPlayers);
 
             this.SetFirstPlayerIndex();
@@ -68,6 +68,7 @@
                     this.CheckIfToPositionIsEmpty(figure, to);
 
                     var avaliableMovements = figure.Move(this._movementStrategy);
+
                     foreach (var movement in avaliableMovements)
                     {
                         movement.ValidateMove(figure, this._board, move);
@@ -84,6 +85,7 @@
                     //TODO: If in check -  checkmate
                     //TODO: If not in mate - check draw
                     //TODO: Countinue 
+                    //TODO: Add Option for resignation
 
                 }
                 catch (Exception e)
@@ -94,12 +96,12 @@
             }
         }
 
-       
+
 
 
         public void WinningConditions()
         {
-          
+
         }
 
         private IPlayer GetFirstPlayer()

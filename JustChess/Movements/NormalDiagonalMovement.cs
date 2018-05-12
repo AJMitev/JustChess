@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Contract;
+    using JustChess.Movements.Contract;
     using JustChess.Board.Contracts;
     using JustChess.Common;
     using JustChess.Figures.Contracts;
@@ -28,8 +28,10 @@
             int rowIndex = from.Row;
             char colIndex = from.Col;
 
+
             int rowDirection = from.Row < to.Row ? 1 : -1;
             char colDirection = (char)(from.Col < to.Col ? 1 : -1);
+
 
             while (true)
             {
@@ -38,26 +40,12 @@
 
                 if (to.Row == rowIndex && to.Col == colIndex)
                 {
-                    var figureAtPositon = board.GetFigureAtPosition(to);
-
-                    if (figureAtPositon != null && figureAtPositon.Color == figure.Color)
-                    {
-                        throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
+                   MovementValidator.CheckForFigureOnTheWay(figure,board,to);
+                    return;
                     }
-                    else
-                    {
-                        return;
-                    }
-
-                }
 
                 var position = Position.FromChessCordinates(rowIndex, colIndex);
-                var figureAtPosition = board.GetFigureAtPosition(position);
-
-                if (figureAtPosition != null)
-                {
-                    throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
-                }
+                MovementValidator.CheckForFigureOnTheWay(figure, board, position);
             }
         }
     }
